@@ -32,11 +32,15 @@ public class Tester {
         EntityManager em = emf.createEntityManager();
         return em.createQuery("SELECT c FROM Customer c").getResultList();
     }
+    public void populate(){
+        createCustomer(new Customer("Jesper", "Olesen", 44, "jesper.olesen@mail.dk", "+4540302010"));
+        createCustomer(new Customer("Hanne", "Olesen", 42, "hanne.olesen@mail.dk", "+4540302001"));
+        createCustomer(new Customer("Jasmin", "Olesen", 4, "hanne.olesen@mail.dk", "+4540302001"));
+    }
     
     public static void main(String[] args) {
         Tester tester = new Tester();
-        tester.createCustomer(new Customer("Jesper", "Olesen", 3, "jesper.olesen@mail.dk", "+4540302010"));
-        tester.createCustomer(new Customer("Hanne", "Olesen", 4, "hanne.olesen@mail.dk", "+4540302001"));
+        tester.populate();
         tester.getAllCustomers().forEach(el->System.out.println(el.getFirstName()+" "+el.getLastName()));
     }
 }
